@@ -1,22 +1,18 @@
 const express = require('express');
 const router = express.Router();
-
-// Conectar ao banco de dados
-const { Client } = require('pg');
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
-});
-client.connect();
+const queries = require("../db");
 
 // Rotas
-router.get('/', (req, res) => {
-  client.query('SELECT * FROM curriculos', (err, result) => {
-    if (err) throw err;
-    res.json(result.rows);
-  });
+router.get('/curriculo', async (req, res) => {
+  try {
+    const results = await queries.selectResume();
+
+    res.status(200).json(results);
+  }
+
+  catch (error) {
+    res.status(500).send('Erro ao buscar dados do currículo: ' + error.message);
+  }
 });
 
 module.exports = router;
