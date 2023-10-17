@@ -18,4 +18,4 @@ async function selectResume() {
   });
 }
 
-module.exports = { selectResume }
+module.exports = { selectResume };
