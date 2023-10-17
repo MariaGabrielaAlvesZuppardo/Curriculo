@@ -6,16 +6,16 @@ const pool = new Pool({
 
 async function selectResume() {
   return new Promise((resolve, reject) => {
-    pool.query('SELECT * FROM curriculo LIMIT 1', (error, results) => {
+    pool.query('SELECT * FROM curriculos', (error, results) => {
       if (error) {
         reject(error);
       }
 
       else {
-        resolve(results.rows[0]); // Retorna apenas o primeiro currículo
+        resolve(results.rows);
       }
     });
   });
 }
 
-module.exports = { selectResume };
+module.exports = { selectResume }

@@ -6,7 +6,7 @@ const pool = new Pool({
 
 async function selectResume() {
   return new Promise((resolve, reject) => {
-    pool.query('SELECT * FROM curriculo LIMIT 1', (error, results) => {
+    pool.query('SELECT * FROM curriculos LIMIT 1', (error, results) => {
       if (error) {
         reject(error);
       }
